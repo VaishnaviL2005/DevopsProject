@@ -1,0 +1,9 @@
+{
+  "cSpell.words": ["cuid", "NEXTAUTH", "turbopack"],
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "always"
+  },
+  "[prisma]": {
+    "editor.defaultFormatter": "Prisma.prisma"
+  }
+}
