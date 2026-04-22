@@ -72,5 +72,3 @@ npm start
 ```
 
 ### Live
-
-https://dev-forum-rho.vercel.app
