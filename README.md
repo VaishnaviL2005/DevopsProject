@@ -16,16 +16,16 @@ Dev Forum is an online platform where software developers can showcase their por
 
 # Setup & Installation
 
-## Option 1: Recommended (Docker Setup)
+## Option 1: Docker Setup (Recommended)
 
 > Prerequisite: Install Docker Desktop (Windows/Mac) or Docker Engine (Linux)
 
-### Clone repository
+### Clone the repository
 
 ```cmd
 git clone https://github.com/saifulshihab/dev-forum.git
 cd dev-forum
-```
+````
 
 ### Configure environment file
 
@@ -33,12 +33,36 @@ cd dev-forum
 cp .env.example .env
 ```
 
-Edit `.env` and set required values.
+Open `.env` and set all required values.
 
-### Run with Docker
+Example:
+
+```env
+NEXTAUTH_URL=http://localhost:3000
+DATABASE_URL=postgresql://postgres:admin123@host.docker.internal:5433/devforum?schema=public
+```
+
+### Start PostgreSQL in Docker
 
 ```cmd
-docker compose up --build
+docker run --name devforum-postgres ^
+-e POSTGRES_USER=postgres ^
+-e POSTGRES_PASSWORD=admin123 ^
+-e POSTGRES_DB=devforum ^
+-p 5433:5432 ^
+-d postgres:15
+```
+
+### Build Docker image
+
+```cmd
+docker build -t devforum-app .
+```
+
+### Run application container
+
+```cmd
+docker run --name devforum-app -p 3000:3000 --env-file .env devforum-app
 ```
 
 ### Access Application
@@ -47,12 +71,13 @@ docker compose up --build
 http://localhost:3000
 ```
 
-This method automatically starts:
+This setup runs:
 
-- Dev Forum application
-- PostgreSQL database
+- PostgreSQL database inside Docker
+- Dev Forum application inside Docker
 
-No need to manually install Node.js or PostgreSQL.
+Docker provides a portable runtime environment for the application. 
+Some initial project setup steps such as Prisma generation may require local Node.js.
 
 ---
 
@@ -73,7 +98,7 @@ npm install
 
 ### Environment variables
 
-There is an `.env.example` file. Copy it to `.env`
+Copy `.env.example` to `.env`
 
 ```cmd
 cp .env.example .env
@@ -119,3 +144,6 @@ npm start
 ---
 
 ## Live
+
+```
+```
