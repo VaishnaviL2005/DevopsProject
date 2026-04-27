@@ -7,14 +7,6 @@ pipeline {
 
     stages {
 
-        stage('Clone Repo') {
-            steps {
-                git branch: 'master',
-                credentialsId: 'github-token',
-                url: 'https://github.com/Dcode-7/DevopsProject.git'
-            }
-        }
-
         stage('Install Dependencies') {
             steps {
                 sh 'npm install'
@@ -33,15 +25,5 @@ pipeline {
             }
         }
 
-    }
-
-    post {
-        success {
-            echo 'Build completed successfully!'
-        }
-
-        failure {
-            echo 'Build failed. Check console output.'
-        }
     }
 }
