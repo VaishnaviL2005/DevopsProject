@@ -11,24 +11,6 @@ pipeline {
 
     stages {
 
-        stage('Install Dependencies') {
-            steps {
-                sh 'npm ci'
-            }
-        }
-
-        stage('Prisma Generate') {
-            steps {
-                sh 'npx prisma generate'
-            }
-        }
-
-        stage('Build Project') {
-            steps {
-                sh 'npm run build'
-            }
-        }
-
         // 🔥 Build Docker Image
         stage('Docker Build') {
             steps {
@@ -39,7 +21,7 @@ pipeline {
         // 🔥 Load image into Minikube
         stage('Load Image to Minikube') {
             steps {
-                sh 'minikube image load $IMAGE_NAME .'
+                sh 'minikube image load $IMAGE_NAME'
             }
         }
 
