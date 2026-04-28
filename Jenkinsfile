@@ -73,9 +73,13 @@ pipeline {
                 sh 'kubectl rollout status deployment/devforum-deploy'
             }
         }
-        post {
-            success { echo 'Pipeline Successful' }
-            failure { echo 'Pipeline Failed' }
+    }
+    post {
+        success {
+            echo 'Pipeline Successful'
+        }
+        failure {
+            echo 'Pipeline Failed'
         }
     }
 }
