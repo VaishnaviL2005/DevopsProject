@@ -16,7 +16,7 @@ pipeline {
         // 🔥 Load image into Minikube
         stage('Load Image to Minikube') {
             steps {
-                sh 'minikube image load $IMAGE_NAME'
+                sh 'minikube -p minikube image load $IMAGE_NAME'
             }
         }
 
@@ -31,7 +31,7 @@ pipeline {
         // ⚡ Apply Autoscaling
         stage('Apply HPA') {
             steps {
-                sh 'kubectl autoscale deployment devforum-deploy --cpu=50% --min=1 --max=5 || true'
+                sh 'kubectl autoscale deployment devforum-deploy --cpu-percent=50 --min=1 --max=5 || true'
             }
         }
 
