@@ -19,7 +19,6 @@ FROM base AS builder
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-# ENV DATABASE_URL="postgresql://postgres:admin123@host.docker.internal:5433/devforum?schema=public"
 
 RUN npx prisma generate
 RUN npm run build
