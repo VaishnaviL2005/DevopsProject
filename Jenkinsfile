@@ -13,6 +13,16 @@ pipeline {
             }
         }
 
+        stage('Deploy (Run Container)') {
+            steps {
+                sh '''
+                docker stop devforum-app || true
+                docker rm devforum-app || true
+                docker run -d -p 3000:3000 --name devforum-app devforum-app:latest
+                '''
+            }
+        }
+
         // // 🔥 Load image into Minikube
         // stage('Load Image to Minikube') {
         //     steps {
